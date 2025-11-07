@@ -26,7 +26,7 @@ public class Constant {
 
 	public enum STATUS_SEND {
 		ONPROGRESS("onprogress", 0), FINISH("finish", 1), SUCCESSFUL_SEND("successful send", 2),
-		SUCCESSFUL_RECEIVED("successful received", 3), FAILED("failed", 4), CORRUPTED("corrupt", 5);
+		FAILED("failed", 3), CORRUPTED("corrupt", 4);
 
 		private String desc;
 		private Integer value;

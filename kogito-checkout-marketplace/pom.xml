@@ -9,7 +9,7 @@
     <relativePath/> <!-- lookup parent from repository -->
   </parent>
 
-  <groupId>kielvien.lourensius.ekasetiaputra.ifg-life.kogito</groupId>
+  <groupId>kielvien.lourensius.ekasetiaputra.ifglife.kogito</groupId>
   <artifactId>kogito-checkout-marketplace</artifactId>
   <version>1.0-SNAPSHOT</version>
 

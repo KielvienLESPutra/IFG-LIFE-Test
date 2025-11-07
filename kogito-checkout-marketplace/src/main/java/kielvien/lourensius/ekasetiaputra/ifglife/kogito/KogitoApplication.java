@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package kielvien.lourensius.ekasetiaputra.ifg-life.kogito;
+package kielvien.lourensius.ekasetiaputra.ifglife.kogito;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

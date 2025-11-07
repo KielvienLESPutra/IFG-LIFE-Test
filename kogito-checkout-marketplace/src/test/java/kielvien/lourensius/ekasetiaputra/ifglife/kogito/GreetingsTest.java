@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package kielvien.lourensius.ekasetiaputra.ifg-life.kogito;
+package kielvien.lourensius.ekasetiaputra.ifglife.kogito;
 
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;

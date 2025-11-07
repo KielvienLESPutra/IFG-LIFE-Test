@@ -35,7 +35,7 @@ public class CustomerService {
 	}
 
 	@Transactional
-	public Customer doSave(CustomerCreateRequest request) throws Exception {
+	public Customer doSave(CustomerCreateRequest request){
 		log.infof("Starting process save customer with request : %s", request.toString());
 		Customer customer = new Customer();
 		customer.setFirstName(request.getFirstName());

@@ -14,6 +14,8 @@ public class TemporaryMessage {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 
+	private Integer refId;
+	
 	@Column(length = 500)
 	private String payload;
 	private Integer status;
@@ -21,7 +23,7 @@ public class TemporaryMessage {
 	private Date createdDate;
 	private String updatedBy;
 	private Date updatedDate;
-
+	
 	public Integer getId() {
 		return id;
 	}
@@ -76,5 +78,13 @@ public class TemporaryMessage {
 
 	public void setUpdatedDate(Date updatedDate) {
 		this.updatedDate = updatedDate;
+	}
+
+	public Integer getRefId() {
+		return refId;
+	}
+
+	public void setRefId(Integer refId) {
+		this.refId = refId;
 	}
 }

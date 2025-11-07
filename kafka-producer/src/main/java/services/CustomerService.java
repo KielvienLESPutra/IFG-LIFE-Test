@@ -53,6 +53,7 @@ public class CustomerService {
 
 		String messageToKafka = objectMapper.writeValueAsString(customer);
 		TemporaryMessage message = new TemporaryMessage();
+		message.setRefId(customer.getId());
 		message.setPayload(messageToKafka);
 		message.setStatus(Constant.STATUS_SEND.ONPROGRESS.getValue());
 		message.setCreatedBy(Constant.SYSTEM);

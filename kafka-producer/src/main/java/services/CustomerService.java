@@ -12,6 +12,7 @@ import entities.TemporaryMessage;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.transaction.Transactional;
 import models.CustomerCreateRequest;
+import models.MessageQuote;
 import repository.CustomerRepository;
 import repository.TemporaryMessageRepository;
 
@@ -52,25 +53,27 @@ public class CustomerService {
 		customerRepository.persist(customer);
 
 		String messageToKafka = objectMapper.writeValueAsString(customer);
-		TemporaryMessage message = new TemporaryMessage();
-		message.setRefId(customer.getId());
-		message.setPayload(messageToKafka);
-		message.setStatus(Constant.STATUS_SEND.ONPROGRESS.getValue());
-		message.setCreatedBy(Constant.SYSTEM);
-		message.setCreatedDate(new Date());
-		temporaryMessageRepository.persist(message);
+		TemporaryMessage temp = new TemporaryMessage();
+		temp.setRefId(customer.getId());
+		temp.setPayload(messageToKafka);
+		temp.setStatus(Constant.STATUS_SEND.ONPROGRESS.getValue());
+		temp.setCreatedBy(Constant.SYSTEM);
+		temp.setCreatedDate(new Date());
+		temporaryMessageRepository.persist(temp);
 
-		boolean isSuccess = kafkaProducer.sendMessage(messageToKafka);
+		MessageQuote messageQuote = new MessageQuote(customer.getId(), temp.getId());
+		String message = objectMapper.writeValueAsString(messageQuote);
+		boolean isSuccess = kafkaProducer.sendMessage(message);
 
 		if (isSuccess) {
-			message.setStatus(Constant.STATUS_SEND.SUCCESSFUL_SEND.getValue());
+			temp.setStatus(Constant.STATUS_SEND.SUCCESSFUL_SEND.getValue());
 		} else {
-			message.setStatus(Constant.STATUS_SEND.FAILED.getValue());
+			temp.setStatus(Constant.STATUS_SEND.FAILED.getValue());
 		}
 
-		message.setUpdatedBy(Constant.SYSTEM);
-		message.setUpdatedDate(new Date());
-		temporaryMessageRepository.persist(message);
+		temp.setUpdatedBy(Constant.SYSTEM);
+		temp.setUpdatedDate(new Date());
+		temporaryMessageRepository.persist(temp);
 
 		log.infof("Finish process save customer with request : %s", request.toString());
 		return customer;

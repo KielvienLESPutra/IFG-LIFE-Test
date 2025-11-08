@@ -12,6 +12,7 @@ import entities.Customer;
 import entities.TemporaryMessage;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.transaction.Transactional;
+import models.MessageQuote;
 import repository.CustomerRepository;
 import repository.TemporaryMessageRepository;
 
@@ -35,7 +36,7 @@ public class KafkaConsumer {
 	public void consumeMessage(String msg) {
 		try {
 			log.infof("Received message from kafka with payload : %s", msg);
-			Customer messageObj = objectMapper.readValue(msg, Customer.class);
+			MessageQuote messageObj = objectMapper.readValue(msg, MessageQuote.class);
 			doUpdateStatusCustomer(messageObj);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -45,11 +46,11 @@ public class KafkaConsumer {
 	}
 
 	@Transactional
-	public void doUpdateStatusCustomer(Customer messageObj) throws Exception {
-		Customer customer = customerRepository.findById(Long.valueOf(messageObj.getId()));
+	public void doUpdateStatusCustomer(MessageQuote messageObj) throws Exception {
+		Customer customer = customerRepository.findById(Long.valueOf(messageObj.getCustomerId()));
 
 		if (customer == null) {
-			log.warnf("Customer with id : %s cannot be found on databases", messageObj.getId());
+			log.warnf("Customer with id : %s cannot be found on databases", messageObj.getCustomerId());
 			throw new Exception("Customer with cannot be found");
 		}
 
@@ -59,10 +60,10 @@ public class KafkaConsumer {
 
 		customerRepository.persist(customer);
 
-		TemporaryMessage temp = temporaryMessageRepository.find("refId", customer.getId()).firstResult();
-
+		TemporaryMessage temp = temporaryMessageRepository.findById(Long.valueOf(messageObj.getTemporaryId()));
+		
 		if (temp == null) {
-			log.warnf("Temporary message with reference id : %s cannot be found on databases", customer.getId());
+			log.warnf("Temporary message with reference id : %s cannot be found on databases", messageObj.getTemporaryId());
 			throw new Exception("Temporary message with cannot be found");
 		}
 		temp.setStatus(Constant.STATUS_SEND.FINISH.getValue());

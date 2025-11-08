@@ -18,7 +18,7 @@ package kielvien.lourensius.ekasetiaputra.ifglife.kogito;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-@SpringBootApplication(scanBasePackages={"kielvien.lourensius.ekasetiaputra.ifg-life.kogito.**", "org.kie.kogito.**", "http**"})
+@SpringBootApplication(scanBasePackages={"kielvien.lourensius.ekasetiaputra.ifglife.kogito.**", "org.kie.kogito.**", "http**"})
 public class KogitoApplication {
 
     public static void main(String[] args) {

@@ -73,6 +73,6 @@ Untuk alur proses data sebagai berikut:
 - Pada proses trakhir ini akan melakukan penyimpanan pada tabel purchases dan update quantity pada tabel item. Setelah itu proses berakhir untuk 1 flow.
 
 <p id="image1" align="center">
-  <img src="checkout.svg" width="100%" alt="Tampilan flow BPMN checkout kogito" style="background-color:white; padding:5px;">
+  <img src="checkout.png" width="100%" alt="Tampilan flow BPMN checkout kogito" style="background-color:white; padding:5px;">
   Gambar 1.1 Tampilan flow BPMN checkout kogito
 </p>

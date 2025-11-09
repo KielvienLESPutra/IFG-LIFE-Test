@@ -2,6 +2,12 @@
 
 ## Index
 
+[Deskripsi](#deskripsi)
+
+- [Quarkus Kafka Producer](#quarkus-kafka-producer)
+- [Quarkus Kafka Consumer](#quarkus-kafka-consumer)
+- [Spring-boot dengan kogito](#spring-boot-dengan-kogito)
+
 ## Deskripsi
 
 Pada project ini dibuat dengan menggunakan framework Quarkus dan spring-boot kogito. Project ini dibuat untuk mensolusikan dan memperlihatkan penggunaan framework Quarkus dan Kogito. Project ini terbagi atas 3 komponen yaitu Quarkus Kafka producer, Quarkus Kafka consumer, dan Spring-boot Kogito. Berikut ini penjelasan untuk ke-3 komponen:
@@ -27,7 +33,7 @@ note: untuk fitur mekanisme retry masih belum dikembangkan pada aplikasi dan aka
 
 Aplikasi ini adalah aplikasi yang berjalan setalah aplikasi Quarkus Kafka Producer berjalan. Hal ini dikarenakan strategy pada aplikasi Quarkus Kafka Producer diset create and drop berdasarkan defaultnya. Tapi bisa diganti menjadi none atau validate. Pada aplikasi ini nantinya message yang diterima berupa id customer dan id temporary message, yang nantinya akan diubah statusnya menjadi 1 atau "ACTIVE".
 
-### Quarkus Kafka Spring-boot dengan Kogito
+### Spring-boot dengan Kogito
 
 Pada [Gambar 1.1](#image1) dibawah ini adalah alur flow data menggunakan BPMN kogito. Dimana pada gambar dibawah ini adalah proses transaksi checkout barang pada market place. Pertama penggunana disini (user) akan menginputkan data pembelanjaan dengan body object JSON dibawah ini sebagai contoh. Pada aplikasi ketika dijalankan terdapat schema dan seed data yang akan diinject langsung ke database postgres. Pada contoh dibawah adalah data yang perlu dimasukan dimana Items merukanan kumpulan data item yang akan dibeli berdasarkan id item dan juga data jumlah. Kemudian juga ada data total pembayaran yang dilakukan oleh user.
 
